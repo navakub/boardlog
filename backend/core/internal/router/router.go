@@ -7,16 +7,16 @@ import (
 
 func SetupRoutes(app *fiber.App) {
 	// auth routes
-	// app.Post("/register", handler.Register)
-	// app.Post("/login", handler.Login)
-	// app.Post("/logout", handler.Logout)
+	app.Post("api/auth/register", handler.Register)
+	app.Post("api/auth/login", handler.Login)
+	app.Post("api/auth/logout", handler.Logout)
 
 	// user routes
-	app.Get("/user", handler.GetUsers)
-	app.Get("/user/:id", handler.GetUser)
-	app.Post("/user", handler.CreateUser)
-	app.Put("/user/:id", handler.UpdateUser)
-	app.Delete("/user/:id", handler.DeleteUser)
+	app.Get("api/user", handler.GetUsers)
+	app.Get("api/user/:id", handler.GetUser)
+	app.Post("api/user", handler.CreateUser)
+	app.Put("api/user/:id", handler.UpdateUser)
+	app.Delete("api/user/:id", handler.DeleteUser)
 
 	// playlog routes
 

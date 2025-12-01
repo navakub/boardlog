@@ -29,7 +29,6 @@ func Connect(cfg *config.Config) {
 
 	// Assign global DB
 	DB = db
-
 	log.Println("Database connected!")
 
 	runMigrations()

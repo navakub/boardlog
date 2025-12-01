@@ -1,4 +1,4 @@
-package main
+package app
 
 import (
 	"github.com/gofiber/fiber/v2"
@@ -10,7 +10,7 @@ import (
 	"github.com/navakub/boardlog/backend/core/internal/service"
 )
 
-func main() {
+func SetupApp() *fiber.App {
 	cfg := config.LoadConfig()
 	database.Connect(cfg)
 
@@ -23,11 +23,13 @@ func main() {
 	app := fiber.New()
 	router.SetupRoutes(app)
 
-	app.Get("/", func(c *fiber.Ctx) error {
+	app.Get("/api", func(c *fiber.Ctx) error {
 		return c.JSON(fiber.Map{
 			"message": "Server is running!",
 		})
 	})
 
-	app.Listen(":3000")
+	app.Listen(":" + cfg.AppPort)
+
+	return app
 }

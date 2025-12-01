@@ -3,6 +3,7 @@ package service
 import (
 	"github.com/navakub/boardlog/backend/core/internal/model"
 	"github.com/navakub/boardlog/backend/core/internal/repository"
+	"github.com/navakub/boardlog/backend/core/internal/utils"
 	"gorm.io/gorm"
 )
 
@@ -29,7 +30,7 @@ func (s *authService) Login(email, password string) (*model.User, error) {
 	if err != nil {
 		return nil, err
 	}
-	if user.Password != password {
+	if !utils.CheckPasswordHash(password, user.Password) {
 		return nil, gorm.ErrRecordNotFound
 	}
 	return user, nil

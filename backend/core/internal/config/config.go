@@ -20,19 +20,19 @@ func LoadConfig() *Config {
 	_ = godotenv.Load() // loads from .env (optional)
 
 	cfg := &Config{
-		AppPort:   getEnv("APP_PORT", "8080"),
-		DBHost:    getEnv("DB_HOST", "localhost"),
-		DBUser:    getEnv("DB_USER", "postgres"),
-		DBPass:    getEnv("DB_PASS", ""),
-		DBName:    getEnv("DB_NAME", "mydb"),
-		DBPort:    getEnv("DB_PORT", "5432"),
-		DBSSLMode: getEnv("DB_SSLMODE", "disable"),
+		AppPort:   GetEnv("APP_PORT", "8080"),
+		DBHost:    GetEnv("DB_HOST", "localhost"),
+		DBUser:    GetEnv("DB_USER", "postgres"),
+		DBPass:    GetEnv("DB_PASS", ""),
+		DBName:    GetEnv("DB_NAME", "mydb"),
+		DBPort:    GetEnv("DB_PORT", "5432"),
+		DBSSLMode: GetEnv("DB_SSLMODE", "disable"),
 	}
 
 	return cfg
 }
 
-func getEnv(key, defaultVal string) string {
+func GetEnv(key, defaultVal string) string {
 	val := os.Getenv(key)
 	if val == "" {
 		return defaultVal
