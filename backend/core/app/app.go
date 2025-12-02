@@ -21,7 +21,7 @@ func SetupApp() *fiber.App {
 	handler.SetAuthService(authService)
 
 	app := fiber.New()
-	router.SetupRoutes(app)
+	router.SetupRoutes(app, userRepo)
 
 	app.Get("/api", func(c *fiber.Ctx) error {
 		return c.JSON(fiber.Map{

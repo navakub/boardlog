@@ -4,6 +4,8 @@ import (
 	"github.com/navakub/boardlog/backend/core/internal/model"
 	"github.com/navakub/boardlog/backend/core/internal/repository"
 	"github.com/navakub/boardlog/backend/core/internal/utils"
+
+	// "github.com/navakub/boardlog/backend/core/internal/middleware"
 	"gorm.io/gorm"
 )
 
@@ -11,6 +13,7 @@ type AuthService interface {
 	Register(user *model.User) error
 	Login(email, password string) (*model.User, error)
 	Logout(userID uint) error
+	GetCurrentUser(userID uint) (*model.User, error)
 }
 
 type authService struct {
@@ -41,6 +44,6 @@ func (s *authService) Logout(userID uint) error {
 	return nil
 }
 
-func (s *authService) Me(userID uint) (*model.User, error) {
+func (s *authService) GetCurrentUser(userID uint) (*model.User, error) {
 	return s.userRepo.GetByID(userID)
 }
